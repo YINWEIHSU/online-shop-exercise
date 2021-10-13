@@ -1,6 +1,5 @@
 const db = require('../models')
-const Cart = db.Cart
-const CartItem = db.CartItem
+const { Cart, CartItem } = db
 const PAGE_LIMIT = 10;
 const PAGE_OFFSET = 0;
 
@@ -15,6 +14,7 @@ let cartController = {
     if (cart.items.length > 0) {
       cart = cart.toJSON()
     }
+    console.log(cart.items[0].CartItem)
     await res.render('cart', {
       cart: cart,
       totalPrice
@@ -41,6 +41,34 @@ let cartController = {
     req.session.cartId = cart[0].dataValues.id
     req.session.save((err) => res.redirect('back'))
   },
+  addCartItem: (req, res) => {
+    CartItem.findByPk(req.params.id).then(cartItem => {
+      cartItem.update({
+        quantity: cartItem.quantity + 1,
+      })
+        .then((cartItem) => {
+          return res.redirect('back')
+        })
+    })
+  },
+  subCartItem: (req, res) => {
+    CartItem.findByPk(req.params.id).then(cartItem => {
+      cartItem.update({
+        quantity: cartItem.quantity - 1 >= 1 ? cartItem.quantity - 1 : 1,
+      })
+        .then((cartItem) => {
+          return res.redirect('back')
+        })
+    })
+  },
+  deleteCartItem: (req, res) => {
+    CartItem.findByPk(req.params.id).then(cartItem => {
+      cartItem.destroy()
+        .then((cartItem) => {
+          return res.redirect('back')
+        })
+    })
+  }
 }
 
 module.exports = cartController
