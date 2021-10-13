@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row banner overflow-hidden">
+    <div class="col-12 p-0 my-1">
+      <img class="banner-img"
+        src="https://shoplineimg.com/5e78283e9e08ce0015908f97/614ac2e9924f880038ed1e4c/1200x.webp?source_format=jpg"
+        alt="雙十快閃延燒慶-台北忠孝SOGO-不用去海邊也能享受大海味">
+    </div>
+    <div class="col-12 p-0 my-1 row">
+      {{#each products}}
+      <div class="card col-3">
+        <img src="{{this.img}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">{{this.name}}</p>
+          <p class="card-text">NT${{this.price}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="col-12 p-0 my-1">facebook</div>
+  </div>
+</div>
