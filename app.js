@@ -6,6 +6,7 @@ const logger = require('morgan');
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const methodOverride = require('method-override')
+const usePassport = require('./config/passport')
 
 
 const indexRouter = require('./routes/index');
@@ -39,6 +40,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
+
+usePassport(app)
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
