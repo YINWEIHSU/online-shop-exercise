@@ -14,6 +14,9 @@ let productController = {
       return Cart.findByPk(req.session.cartId, { include: 'items' }).then(cart => {
         cart = cart || { items: [] }
         let totalPrice = cart.items.length > 0 ? cart.items.map(d => d.price * d.CartItem.quantity).reduce((a, b) => a + b) : 0
+        if (cart.items.length > 0) {
+          cart = cart.toJSON()
+        }
         return res.render('products', {
           products,
           cart,
