@@ -11,7 +11,6 @@ let productController = {
       raw: true,
       nest: true
     }).then(products => {
-      console.log(products)
       return res.render('products', {
         products
       })
