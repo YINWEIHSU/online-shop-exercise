@@ -14,7 +14,6 @@ let cartController = {
     if (cart.items.length > 0) {
       cart = cart.toJSON()
     }
-    console.log(cart.items[0].CartItem)
     await res.render('cart', {
       cart: cart,
       totalPrice
