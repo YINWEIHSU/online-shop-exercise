@@ -1,6 +1,6 @@
 const db = require('../models')
 const { Product, Cart } = db
-const PAGE_LIMIT = 3;
+const PAGE_LIMIT = 10;
 const PAGE_OFFSET = 0;
 
 let productController = {
