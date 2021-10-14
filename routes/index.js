@@ -33,4 +33,9 @@ router.get('/order', orderController.getOrder)
 router.post('/order', orderController.postOrder)
 router.post('/order/:id/cancel', orderController.cancelOrder)
 
+router.get('/order/:id/payment', orderController.getPayment)
+router.post('/newebpay/callback', orderController.newebpayCallback)
+
+
+
 module.exports = router;
