@@ -1,0 +1,30 @@
+{{#if product}}
+<form action="/admin/products/{{product.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+  {{else}}
+  <form action="/admin/products" method="POST" enctype="multipart/form-data">
+    {{/if}}
+    {{> message}}
+    <div class="form-group mt-3">
+      <label for="name">商品名稱</label>
+      <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" value="{{product.name}}">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="price">定價</label>
+      <input type="text" class="form-control" name="price" id="price" placeholder="Enter price"
+        value="{{product.price}}">
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="description">商品介紹</label>
+      <textarea class="form-control" id="description" name="description" rows="3">{{product.description}}</textarea>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="image">商品照片</label>
+      <input type="file" class="form-control-file" id="image" name="image">
+      <img src="{{product.image}}" style="width:250px;" alt="">
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  </form>

@@ -34,6 +34,7 @@ app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/upload', express.static(__dirname + '/upload'))
 
 app.use(cookieParser());
 app.use(session({

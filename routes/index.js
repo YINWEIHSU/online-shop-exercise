@@ -8,6 +8,8 @@ const userController = require('../controllers/userController.js');
 const adminController = require('../controllers/adminController')
 const app = require('../app.js');
 const { checkIfUser, checkIfAdmin } = require('../config/authenticators')
+const multer = require('multer')
+const upload = multer({ dest: 'temp/' })
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -36,7 +38,7 @@ router.post('/order/:id/cancel', orderController.cancelOrder)
 router.get('/order/:id/payment', orderController.getPayment)
 router.post('/newebpay/callback', orderController.newebpayCallback)
 
-router.get('/admin', (req, res, next) => {
+router.get('/admin', checkIfAdmin, (req, res, next) => {
   res.render('adminIndex', { layout: 'admin' });
 })
 router.get('/admin/login', adminController.signInPage)
@@ -47,6 +49,10 @@ router.get('/admin/orders', checkIfAdmin, adminController.getOrders)
 router.get('/admin/orders/:id', checkIfAdmin, adminController.getOrder)
 router.get('/admin/products', checkIfAdmin, adminController.getProducts)
 router.get('/admin/customers', checkIfAdmin, adminController.getCustomers)
+router.get('/admin/products/create', checkIfAdmin, adminController.createProduct)
+router.put('/admin/products/:id', checkIfAdmin, upload.single('image'), adminController.putProduct)
+router.get('/admin/products/:id', checkIfAdmin, adminController.getProduct)
+router.post('/admin/products', checkIfAdmin, upload.single('image'), adminController.postProduct)
 
 
 
