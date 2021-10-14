@@ -1,5 +1,5 @@
-<h3>餐廳列表</h3>
-<a href="/admin/products/create" class="btn btn-primary my-4">上架商品</a>
+<h3 class="my-3">商品列表</h3>
+<a href="/admin/products/create" class="btn btn-sm btn-outline-secondary my-4">上架商品</a>
 {{> message}}
 <div class="d-flex flex-wrap">
   {{#each products}}
@@ -9,7 +9,7 @@
       <h5 class="card-title">{{this.name}}</h5>
       <p class="card-text">{{this.description}}</p>
       <h4>定價：{{this.price}}</h4>
-      <a href="/admin/products/{{this.id}}" class="btn btn-primary mt-4">修改商品詳情</a>
+      <a href="/admin/products/{{this.id}}" class="btn btn-sm btn-outline-secondary mt-4">修改商品詳情</a>
     </div>
   </div>
   {{/each}}

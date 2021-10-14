@@ -42,7 +42,8 @@ let userController = {
     return res.redirect('/products')
   },
   logout: (req, res) => {
-    res.send('logout')
+    req.logout()
+    return res.redirect('/login')
   }
 }
 

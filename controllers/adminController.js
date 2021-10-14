@@ -154,7 +154,8 @@ let userController = {
     })
   },
   logout: (req, res) => {
-    res.send('logout')
+    req.logout()
+    return res.redirect('/admin/login')
   }
 }
 

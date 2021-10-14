@@ -22,6 +22,7 @@ router.post('/login', passport.authenticate('local', {
   successRedirect: '/products',
   failureRedirect: '/login'
 }))
+router.get('/logout', userController.logout)
 
 router.get('/products', productController.getProducts)
 
@@ -53,6 +54,7 @@ router.get('/admin/products/create', checkIfAdmin, adminController.createProduct
 router.put('/admin/products/:id', checkIfAdmin, upload.single('image'), adminController.putProduct)
 router.get('/admin/products/:id', checkIfAdmin, adminController.getProduct)
 router.post('/admin/products', checkIfAdmin, upload.single('image'), adminController.postProduct)
+router.get('/admin/logout', adminController.logout)
 
 
 
