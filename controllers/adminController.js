@@ -7,13 +7,14 @@ let userController = {
     res.render('adminSignin', { layout: '' })
   },
   signIn: (req, res) => {
+    console.log(req.user)
     if (req.user.role !== 'admin') {
-      req.flash('error_messages', '權限不足')
+      req.flash('error_message', '權限不足')
       req.logout()
-      return res.redirect('/admin/signin')
+      return res.redirect('/admin/login')
     }
-    req.flash('success_messages', 'Sign in successfully.')
-    return res.redirect('/admin/users')
+    req.flash('success_message', '成功登入')
+    return res.redirect('/admin/orders')
   },
   getOrders: async (req, res) => {
     let orders = await Order.findAll({

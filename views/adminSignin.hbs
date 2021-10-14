@@ -38,19 +38,23 @@
       </h1>
       <div class="col-3"></div>
       <form action="/admin/login" method="POST" class="row col">
-        <div class="mb-3 p-0">
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Email">
+        {{> message}}
+        <div class="form-group">
+          <div class="mb-3 p-0">
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+              placeholder="Email">
+          </div>
         </div>
-        <div class="mb-3 p-0">
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密碼">
+        <div class="form-group">
+          <div class="mb-3 p-0">
+            <input type="password" class="form-control" id="password" name="password" placeholder="密碼">
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary col-12">後台管理登入<i class="fas fa-arrow-right"></i></button>
+        <button type="submit" class="btn btn-primary btn-block col-12">後台管理登入<i class="fas fa-arrow-right"></i></button>
       </form>
       <div class="col-3"></div>
       <a href="#">忘記密碼</a>
     </div>
-
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

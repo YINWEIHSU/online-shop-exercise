@@ -7,7 +7,7 @@ const orderController = require('../controllers/orderController.js');
 const userController = require('../controllers/userController.js');
 const adminController = require('../controllers/adminController')
 const app = require('../app.js');
-
+const { checkIfUser, checkIfAdmin } = require('../config/authenticators')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -40,11 +40,13 @@ router.get('/admin', (req, res, next) => {
   res.render('adminIndex', { layout: 'admin' });
 })
 router.get('/admin/login', adminController.signInPage)
-router.post('/admin/login', adminController.signIn)
-router.get('/admin/orders', adminController.getOrders)
-router.get('/admin/orders/:id', adminController.getOrder)
-router.get('/admin/products', adminController.getProducts)
-router.get('/admin/customers', adminController.getCustomers)
+router.post('/admin/login', passport.authenticate('local', {
+  failureRedirect: '/admin/login'
+}), adminController.signIn)
+router.get('/admin/orders', checkIfAdmin, adminController.getOrders)
+router.get('/admin/orders/:id', checkIfAdmin, adminController.getOrder)
+router.get('/admin/products', checkIfAdmin, adminController.getProducts)
+router.get('/admin/customers', checkIfAdmin, adminController.getCustomers)
 
 
 
