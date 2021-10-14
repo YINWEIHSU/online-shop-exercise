@@ -29,6 +29,7 @@ router.post('/cartItem/:id/sub', cartController.subCartItem)
 router.delete('/cartItem/:id', cartController.deleteCartItem)
 
 router.get('/orders', orderController.getOrders)
+router.get('/order', orderController.getOrder)
 router.post('/order', orderController.postOrder)
 router.post('/order/:id/cancel', orderController.cancelOrder)
 

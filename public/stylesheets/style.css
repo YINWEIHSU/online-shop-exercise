@@ -40,3 +40,7 @@ body {
 .main-content {
   width: 100%;
 }
+
+.hide{
+  display:none;  
+}

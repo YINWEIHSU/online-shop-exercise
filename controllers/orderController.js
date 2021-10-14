@@ -1,4 +1,5 @@
 const db = require('../models')
+const user = require('../models/user')
 const { Order, Product, OrderItem, Cart } = db
 
 let orderController = {
@@ -11,19 +12,38 @@ let orderController = {
       orders: orders
     })
   },
+  getOrder: async (req, res) => {
+    let order = await Order.findOne({
+      where: {
+        id: req.session.OrderId,
+        shipping_status: 0
+      },
+      include: ['items']
+    })
+    console.log(order)
+    await res.render('order', {
+      order: order.toJSON()
+    })
+
+  },
   postOrder: (req, res) => {
     return Cart.findByPk(req.body.cartId, { include: 'items' }).then(cart => {
+      let id = 0
+      if (req.user) id = req.user.id
       return Order.create({
         name: req.body.name,
         address: req.body.address,
         phone: req.body.phone,
+        email: req.body.email,
         shipping_status: req.body.shipping_status,
         payment_status: req.body.payment_status,
         amount: req.body.amount,
+        UserId: id
       }).then(order => {
-
-        var results = [];
-        for (var i = 0; i < cart.items.length; i++) {
+        const results = [];
+        req.session.OrderId = order.id
+        console.log(req.session)
+        for (let i = 0; i < cart.items.length; i++) {
           console.log(order.id, cart.items[i].id)
           results.push(
             OrderItem.create({
@@ -34,9 +54,8 @@ let orderController = {
             })
           );
         }
-
         return Promise.all(results).then(() =>
-          res.redirect('/orders')
+          res.redirect(`/order`)
         );
 
       })
@@ -49,7 +68,7 @@ let orderController = {
         shipping_status: '-1',
         payment_status: '-1',
       }).then(order => {
-        return res.redirect('back')
+        return res.redirect('/products')
       })
     })
   },
