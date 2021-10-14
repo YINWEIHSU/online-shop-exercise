@@ -1,4 +1,12 @@
 <div class="container">
   <h3>準備為訂單編號： {{order.id}} 付款 </h3>
   <h4>總價 {{order.amount}} </h4>
+
+  <form name='Newebpay' action='{{tradeInfo.PayGateWay}}' method="POST">
+    <input class='hide' type="text" name="MerchantID" value="{{tradeInfo.MerchantID}}" placeholder="MerchantID"><br>
+    <input class='hide' type="text" name="TradeInfo" value="{{tradeInfo.TradeInfo}}" placeholder="TradeInfo"><br>
+    <input class='hide' type="text" name="TradeSha" value="{{tradeInfo.TradeSha}}" placeholder="TradeSha"><br>
+    <input class='hide' type="text" name="Version" value="{{tradeInfo.Version}}" placeholder="Version"><br>
+    <button type="submit" class="btn btn-primary">Payment</button>
+  </form>
 </div>

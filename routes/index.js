@@ -10,6 +10,7 @@ const app = require('../app.js');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
+  console.log('首頁REQ:', req.session)
   res.render('index');
 });
 
