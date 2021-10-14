@@ -1,0 +1,61 @@
+<div class="order-info mt-5">
+  <h3 class="my-3">單筆訂單資訊</h3>
+  <div class="card">
+    <div class="card-header">
+      訂單詳情
+    </div>
+    <div class="card-body">
+      <div>訂單號碼 {{order.id}}</div>
+      <div>訂單日期 {{order.createdAt}}</div>
+      <div>訂單金額 {{order.amount}}</div>
+      {{#ifCond order.payment_status '0'}}
+      <div>訂單狀態：未付款</div>
+      {{/ifCond}}
+      {{#ifCond order.payment_status '1'}}
+      <div>訂單狀態：已付款</div>
+      {{/ifCond}}
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      訂單內容
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">產品名稱</th>
+            <th scope="col">數量</th>
+            <th scope="col">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each order.items}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.OrderItem.quantity}}</td>
+            <td>{{this.price}}</td>
+          </tr>
+          {{/each}}
+          <tr>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    訂購人資訊
+  </div>
+  <div class="card-body">
+    <div>訂購人</div>
+    <div class="mb-3">{{order.name}}</div>
+    <div>訂單Email</div>
+    <div class="mb-3">{{order.email}}</div>
+    <div>電話號碼</div>
+    <div class="mb-3">{{order.phone}}</div>
+  </div>
+</div>
+<button type="button" class="btn btn-danger mt-2">刪除訂單</button>
+</div>

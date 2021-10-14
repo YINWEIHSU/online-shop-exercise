@@ -4,9 +4,9 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Product</th>
-            <th scope="col">quantity</th>
-            <th scope="col">Subtotal</th>
+            <th scope="col">產品名稱</th>
+            <th scope="col">數量</th>
+            <th scope="col">小計</th>
           </tr>
         </thead>
         <tbody>
@@ -20,7 +20,7 @@
           <tr>
             <td></td>
             <td style="text-align: right;">
-              <h4>Total: </h4>
+              <h4>總計: </h4>
             </td>
             <td>
               <h4>{{order.amount}}</h4>
@@ -32,14 +32,16 @@
 
     <div>
       <ul>
-        <li>{{order.id}}</li>
-        <li>name: {{order.name}}</li>
-        <li>address: {{order.address}}</li>
-        <li>phone: {{order.phone}}</li>
+        <li>訂單編號：{{order.id}}</li>
+        <li>訂購人：{{order.name}}</li>
+        <li>送貨地址： {{order.address}}</li>
+        <li>連絡電話：{{order.phone}}</li>
         <li class="hide">shipping_status: {{order.shipping_status}}</li>
         <li class="hide">payment_status: {{order.payment_status}}</li>
-      </ul>
 
+        {{#ifCond order.payment_status '0'}}
+        <li>訂單狀態：未付款</li>
+      </ul>
       <div style="display: flex; justify-content: space-around;">
         <form action="/order/{{order.id}}/cancel" method="POST">
           <button type="submit" class="btn btn-primary">取消訂單</button>
@@ -47,6 +49,18 @@
 
         <a href="/order/{{order.id}}/payment"><button class="btn btn-primary">立即付款</button></a>
       </div>
+      {{/ifCond}}
+      {{#ifCond order.payment_status '1'}}
+        <li>訂單狀態：已付款</li>
+      </ul>
+      <div style="display: flex; justify-content: space-around;">
+        <form action="/order/{{order.id}}/cancel" method="POST">
+          <button type="submit" class="btn btn-primary">取消訂單</button>
+        </form>
+
+        <a href="/order/{{order.id}}/payment"><button class="btn btn-primary">立即付款</button></a>
+      </div>
+      {{/ifCond}}
     </div>
   </div>
   <hr />

@@ -8,6 +8,7 @@ module.exports = {
         name: faker.commerce.productName(),
         phone: faker.phone.phoneNumber(),
         address: faker.address.streetAddress(),
+        email: faker.internet.email(),
         amount: faker.datatype.number(),
         sn: faker.datatype.number(),
         shipping_status: Math.floor(Math.random() * 1),

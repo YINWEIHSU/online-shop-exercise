@@ -1,0 +1,22 @@
+<div class="admin-order-management">
+  <h3 class="my-3">會員總覽</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">會員序號</th>
+        <th scope="col">會員電郵</th>
+        <th scope="col">訂單數量</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+      <tr>
+        <th scope="row">{{this.id}}</th>
+        <td>{{this.email}}</td>
+        <td>{{this.Orders.length}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</div>

@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,9 +6,9 @@ a {
   color: #00B7FF;
 }
 
-.navbar-header, .container {
+/* .navbar-header, .container {
   outline: black solid 2px;
-}
+} */
 .container {
   max-width:1170px;
 }

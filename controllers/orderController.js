@@ -92,15 +92,6 @@ function getTradeInfo(Amt, Desc, email) {
 }
 
 let orderController = {
-  getOrders: async (req, res) => {
-    let orders = await Order.findAll({
-      include: ['items'],
-    })
-    orders = JSON.parse(JSON.stringify(orders))
-    await res.render('orders', {
-      orders: orders
-    })
-  },
   getOrder: async (req, res) => {
     console.log('session:', req.session)
     let order = await Order.findOne({
@@ -112,7 +103,6 @@ let orderController = {
     await res.render('order', {
       order: order.toJSON()
     })
-
   },
   postOrder: (req, res) => {
     return Cart.findByPk(req.body.cartId, { include: 'items' }).then(cart => {

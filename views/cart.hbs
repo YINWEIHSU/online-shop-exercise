@@ -3,11 +3,11 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Price</th>
-          <th scope="col">quantity</th>
-          <th scope="col">Subtotal</th>
-          <th scope="col">#</th>
+          <th scope="col"></th>
+          <th scope="col">價格</th>
+          <th scope="col">數量</th>
+          <th scope="col">小記</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -39,7 +39,7 @@
           <td>
             <form action="/cartItem/{{this.CartItem.id}}?_method=DELETE" method="POST">
               <button type="submit" class="btn btn-link">
-                <i class="fas fa-trash"></i>
+                <i class="fas fa-trash text-danger"></i>
               </button>
             </form>
           </td>
@@ -83,7 +83,7 @@
         <input type="hidden" name="amount" value="{{totalPrice}}">
         <input type="hidden" name="shipping_status" value="0">
         <input type="hidden" name="payment_status" value="0">
-        <button type="submit" class="btn btn-primary mt-3">送出訂單</button>
+        <button type="submit" class="btn btn-primary my-3">送出訂單</button>
       </form>
     </div>
   </div>
