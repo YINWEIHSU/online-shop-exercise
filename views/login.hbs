@@ -14,6 +14,7 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="sign-up" role="tabpanel" aria-labelledby="sign-up-tab">
           <form action="/signup" method="POST">
+            {{> message}}
             <div class="form-group m-3">
               <a href="/auth/facebook" class="btn btn-info btn-block">Facebook</a>
               <div class="text-center my-3">註冊電郵</div>
@@ -34,6 +35,7 @@
           </form>
         </div>
         <div class="tab-pane fade" id="login" role="tabpanel" aria-labelledby="login-tab">
+          {{> message}}
           <form action="/login" method="POST">
             <div class="form-group m-3">
               <a href="/auth/facebook" class="btn btn-info btn-block">Facebook</a>

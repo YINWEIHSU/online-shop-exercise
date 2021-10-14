@@ -10,7 +10,7 @@ let userController = {
     const { name, email, password, confirmPassword } = req.body
     // confirm password
     if (confirmPassword !== password) {
-      console.log('密碼不符')
+      req.flash('error_message', '密碼與確認密碼不符')
       return res.render('login', {
         name,
         email,
@@ -20,7 +20,7 @@ let userController = {
     // confirm unique user
     const user = await User.findOne({ where: { email } })
     if (user) {
-      req.flash('error_messages', '用戶已存在')
+      req.flash('error_message', '用戶已存在')
       return res.render('login', {
         name,
         email,
@@ -35,12 +35,10 @@ let userController = {
       password: bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
     })
     if (!newUser) {
-      console.log('帳號創建失敗')
-      req.flash('error_messages', '用戶創建失敗')
+      req.flash('error_message', '用戶創建失敗')
       return res.redirect('/login')
     }
-    console.log('帳號創建成功')
-    req.flash('success_messages', '帳號創建成功')
+    req.flash('success_message', '帳號創建成功')
     return res.redirect('/products')
   },
   logout: (req, res) => {

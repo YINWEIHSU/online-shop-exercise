@@ -17,7 +17,7 @@ router.get('/login', userController.signInPage)
 router.post('/signup', userController.signUp)
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/products',
-  failureRedirect: '/'
+  failureRedirect: '/login'
 }))
 
 router.get('/products', productController.getProducts)

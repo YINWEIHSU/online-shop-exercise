@@ -42,8 +42,15 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-app.use(flash())
 usePassport(app)
+app.use(flash())
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_message')
+  res.locals.error_msg = req.flash('error_message')
+  next()
+})
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

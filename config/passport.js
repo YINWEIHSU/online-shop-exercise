@@ -16,10 +16,8 @@ module.exports = app => {
         }
         return bcrypt.compare(password, user.password).then(isMatch => {
           if (!isMatch) {
-            console.log('帳號密碼錯誤')
             return done(null, false, req.flash('error_message', '帳號密碼錯誤'))
           }
-          console.log('登入成功')
           return done(null, user)
         })
       })
