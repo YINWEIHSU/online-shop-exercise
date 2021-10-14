@@ -1,13 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport')
 const productController = require('../controllers/productController.js')
 const cartController = require('../controllers/cartController.js')
-const orderController = require('../controllers/orderController.js')
+const orderController = require('../controllers/orderController.js');
+const userController = require('../controllers/userController.js');
+const app = require('../app.js');
+
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', (req, res, next) => {
+  res.render('index');
 });
+
+router.get('/login', userController.signInPage)
+router.post('/signup', userController.signUp)
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/products',
+  failureRedirect: '/'
+}))
 
 router.get('/products', productController.getProducts)
 

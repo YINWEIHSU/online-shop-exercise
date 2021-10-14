@@ -1,0 +1,53 @@
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body border-0">
+      <ul class="nav nav-fill nav-tabs justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="sign-up-tab" data-bs-toggle="tab" data-bs-target="#sign-up" type="button"
+            role="tab" aria-controls="sign-up" aria-selected="true">註冊會員</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab"
+            aria-controls="login" aria-selected="false">會員登入</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="sign-up" role="tabpanel" aria-labelledby="sign-up-tab">
+          <form action="/signup" method="POST">
+            <div class="form-group m-3">
+              <a href="/auth/facebook" class="btn btn-info btn-block">Facebook</a>
+              <div class="text-center my-3">註冊電郵</div>
+              <input type="text" id="name" name="name" class="form-control" placeholder="用戶名" value="{{ name }}">
+            </div>
+            <div class="form-group m-3">
+              <input type="email" id="email" name="email" class="form-control" placeholder="電郵" value="{{ email }}">
+            </div>
+            <div class="form-group m-3">
+              <input type="password" id="password" name="password" class="form-control" placeholder="密碼"
+                value="{{ password }}">
+            </div>
+            <div class="form-group m-3">
+              <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+                placeholder="再次輸入密碼" value="{{ confirmPassword }}">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">立即加入!</button>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="login" role="tabpanel" aria-labelledby="login-tab">
+          <form action="/login" method="POST">
+            <div class="form-group m-3">
+              <a href="/auth/facebook" class="btn btn-info btn-block">Facebook</a>
+              <div class="text-center">登入電郵</div>
+              <input type="email" id="email" name="email" class="form-control" placeholder="電郵">
+            </div>
+            <div class="form-group m-3">
+              <input type="password" id="password" name="password" class="form-control" placeholder="密碼">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">開始購物吧</button>
+            <a href="">忘記密碼?</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

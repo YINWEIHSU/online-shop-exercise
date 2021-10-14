@@ -7,6 +7,7 @@ const exphbs = require('express-handlebars')
 const session = require('express-session')
 const methodOverride = require('method-override')
 const usePassport = require('./config/passport')
+const flash = require('connect-flash')
 
 
 const indexRouter = require('./routes/index');
@@ -41,6 +42,7 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+app.use(flash())
 usePassport(app)
 
 app.use('/', indexRouter);

@@ -8,32 +8,34 @@ module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+  passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true, }, (req, email, password, done) => {
     User.findOne({ where: { email } })
       .then(user => {
         if (!user) {
-          return done(null, false, req.flash('error_message', '該電郵尚未註冊'))
+          return done(null, false, req.flash('error_message', '該帳號不存在'))
         }
         return bcrypt.compare(password, user.password).then(isMatch => {
           if (!isMatch) {
-            return done(null, false, req.flash('error_message', '帳號或密碼錯誤'))
+            console.log('帳號密碼錯誤')
+            return done(null, false, req.flash('error_message', '帳號密碼錯誤'))
           }
+          console.log('登入成功')
           return done(null, user)
         })
       })
-      .catch(err => done(err, false))
+      .catch(err => {
+        console.log(err)
+        done(err, false)
+      })
   }))
 
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
-
   passport.deserializeUser((id, done) => {
-    User.findByPK(id)
-      .then(user => {
-        user = user.toJSON()
-        done(null, user)
-      })
-      .catch(err => console.log(err))
+    User.findByPk(id).then(user => {
+      user = user.toJSON()
+      done(null, user)
+    }).catch(err => console.log(err))
   })
 }

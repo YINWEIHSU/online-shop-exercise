@@ -15,8 +15,13 @@
 
 <body>
   <div class="menu-buttons d-flex justify-content-end">
+    {{#if isAuthenticated}}
     <a href="#" class="menu-button btn btn-sm btn-outline-secondary m-1"><span class="fa fa-user-circle"></span><span
         class="menu-words">我的帳戶</span></a>
+    {{else}}
+    <a href="/login" class="menu-button btn btn-sm btn-outline-secondary m-1"><span
+        class="fa fa-user-circle"></span><span class="menu-words">登入會員</span></a>
+    {{/if}}
     <a href="/cart" class="menu-button btn btn-sm btn-outline-secondary m-1"><span
         class="fa fa-shopping-cart"></span><span class="menu-words">購物車</span></a>
     <a href="#" class="menu-button btn btn-sm btn-outline-secondary m-1"><span class="fa fa-comment"></span><span
@@ -30,7 +35,7 @@
             <div class="navbar-header-wrapper rol-12">
               <div class="container d-flex justify-content-center">
                 <div class="navbar-header">
-                  <a href="#"><img
+                  <a href="/"><img
                       src="https://shoplineimg.com/5e78283e9e08ce0015908f97/5ebe7b065fe14f004b7e6c0a/x140.webp?source_format=jpg"
                       class="logo-image" alt=""></a>
                 </div>
@@ -40,7 +45,7 @@
               <div class="container">
                 <div class="navbar-menu">
                   <ul class="text-primary-color nav justify-content-center">
-                    <li class="nav-item"><a class="nav-link text-secondary" href="#">關於晟品凍洋</a></li>
+                    <li class="nav-item"><a class="nav-link text-secondary" href="/">關於晟品凍洋</a></li>
                     <li class="nav-item"><a class="nav-link text-secondary" href="/products">極凍海鮮</a></li>
                     <li class="nav-item"><a class="nav-link text-secondary" href="#">人氣分享</a></li>
                     <li class="nav-item"><a class="nav-link text-secondary" href="#">廠商合作</a></li>
