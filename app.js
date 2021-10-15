@@ -40,7 +40,7 @@ app.use(cookieParser());
 app.use(session({
   secret: process.env.SECRET,
   name: 'online-shop',
-  cookie: { maxAge: 80000 },
+  cookie: { maxAge: 600000 },
   resave: false,
   saveUninitialized: true,
 }));
