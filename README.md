@@ -1,5 +1,5 @@
-# ONLINE-SHOP-SQL
-Online-shop-sql is a e-commerce website that allows users to purchase online.
+# ONLINE-SHOP-EXERCISE
+Online-shop-exercise is a e-commerce website that allows users to purchase online.
 #### Features
 1. customer is able to store products in cart.
 2. customer is able to create orders.
