@@ -7,10 +7,9 @@ const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID
 
 let adminController = {
   signInPage: async (req, res) => {
-    res.render('adminSignin', { layout: '' })
+    res.render('admin/login', { layout: '' })
   },
   signIn: (req, res) => {
-    console.log(req.user)
     if (req.user.role !== 'admin') {
       req.flash('error_message', '權限不足')
       req.logout()
@@ -24,7 +23,7 @@ let adminController = {
       include: ['items'],
     })
     orders = JSON.parse(JSON.stringify(orders))
-    await res.render('orders', {
+    await res.render('admin/orders', {
       orders: orders,
       layout: 'admin'
     })
@@ -36,7 +35,7 @@ let adminController = {
       },
       include: ['items']
     })
-    await res.render('orderInfo', {
+    await res.render('admin/order', {
       order: order.toJSON(),
       layout: 'admin'
     })
@@ -48,21 +47,20 @@ let adminController = {
     }).then(products => {
       products = JSON.parse(JSON.stringify(products))
 
-      return res.render('adminProducts', {
+      return res.render('admin/products', {
         products,
         layout: 'admin'
       })
     })
   },
   createProduct: (req, res) => {
-    return res.render('adminProduct', {
+    return res.render('admin/product', {
       layout: 'admin'
     })
   },
   getProduct: (req, res) => {
     Product.findByPk(req.params.id).then(product => {
-      console.log(product)
-      return res.render('adminProduct', {
+      return res.render('admin/product', {
         product: product.toJSON(),
         layout: 'admin'
       })
@@ -143,7 +141,7 @@ let adminController = {
       nest: true
     }).then(users => {
       users = JSON.parse(JSON.stringify(users))
-      return res.render('customers', {
+      return res.render('admin/customers', {
         users,
         layout: 'admin'
       })
