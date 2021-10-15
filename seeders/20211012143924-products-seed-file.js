@@ -9,7 +9,7 @@ module.exports = {
         id: index + 1,
         name: faker.commerce.productName(),
         description: faker.commerce.product() + '/' + faker.commerce.productName(),
-        price: faker.commerce.price(),
+        price: Math.random() * 500 + 1,
         image: faker.image.imageUrl(),
         createdAt: new Date(),
         updatedAt: new Date(),
