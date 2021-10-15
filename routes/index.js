@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport')
-const productController = require('../controllers/productController.js')
-const cartController = require('../controllers/cartController.js')
-const orderController = require('../controllers/orderController.js');
-const userController = require('../controllers/userController.js');
+const productController = require('../controllers/productController')
+const cartController = require('../controllers/cartController')
+const orderController = require('../controllers/orderController');
+const userController = require('../controllers/userController');
 const adminController = require('../controllers/adminController')
 const app = require('../app.js');
 const { checkIfUser, checkIfAdmin } = require('../config/authenticators')

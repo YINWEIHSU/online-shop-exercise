@@ -2,8 +2,10 @@ const bcrypt = require('bcryptjs')
 const db = require('../models')
 const { User, Order, Product, Cart } = db
 const fs = require('fs')
+const imgur = require('imgur-node-api')
+const IMGUR_CLIENT_ID = process.env.IMGUR_CLIENT_ID
 
-let userController = {
+let adminController = {
   signInPage: async (req, res) => {
     res.render('adminSignin', { layout: '' })
   },
@@ -73,18 +75,16 @@ let userController = {
     }
     const { file } = req
     if (file) {
-      fs.readFile(file.path, (err, data) => {
-        if (err) console.log('Error: ', err)
-        fs.writeFile(`upload/${file.originalname}`, data, () => {
-          return Product.create({
-            name: req.body.name,
-            price: req.body.price,
-            description: req.body.description,
-            image: file ? `/upload/${file.originalname}` : null
-          }).then(product => {
-            req.flash('success_message', '成功上架商品')
-            return res.redirect('/admin/products')
-          })
+      imgur.setClientID(IMGUR_CLIENT_ID);
+      imgur.upload(file.path, (err, img) => {
+        return Product.create({
+          name: req.body.name,
+          price: req.body.price,
+          description: req.body.description,
+          image: file ? img.data.link : null
+        }).then(product => {
+          req.flash('success_message', '成功上架商品')
+          return res.redirect('/admin/products')
         })
       })
     } else {
@@ -106,24 +106,20 @@ let userController = {
     }
     const { file } = req
     if (file) {
-      fs.readFile(file.path, (err, data) => {
-        if (err) console.log('Error: ', err)
-        fs.writeFile(`upload/${file.originalname}`, data, () => {
-          console.log('data', data)
-          return Product.findByPk(req.params.id)
-            .then(product => {
-              console.log('product:', product)
-              product.update({
-                name: req.body.name,
-                price: req.body.price,
-                description: req.body.description,
-                image: file ? `/upload/${file.originalname}` : product.image
-              }).then(product => {
-                req.flash('success_message', '成功更新商品資訊')
-                return res.redirect('/admin/products')
-              })
+      imgur.setClientID(IMGUR_CLIENT_ID);
+      imgur.upload(file.path, (err, img) => {
+        return Product.findByPk(req.params.id)
+          .then(product => {
+            product.update({
+              name: req.body.name,
+              price: req.body.price,
+              description: req.body.description,
+              image: file ? img.data.link : product.image
+            }).then(product => {
+              req.flash('success_message', '成功更新商品資訊')
+              return res.redirect('/admin/products')
             })
-        })
+          })
       })
     } else {
       return Product.findByPk(req.params.id)
@@ -159,4 +155,4 @@ let userController = {
   }
 }
 
-module.exports = userController
+module.exports = adminController
