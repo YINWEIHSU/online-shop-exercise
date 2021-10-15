@@ -1,12 +1,12 @@
 # ONLINE-SHOP-EXERCISE
 Online-shop-exercise is a e-commerce website that allows users to purchase online.
-#### Features
+## Features
 1. customer is able to store products in cart.
 2. customer is able to create orders.
 3. customer is able to pay via third-party payment service.
 4. admin is able to view users and their orders
 5. admin is able to create, edit, view products.
-#### Test website
+## Test website
 * User: https://online-shop-sql.herokuapp.com/
 * Admin: https://online-shop-sql.herokuapp.com/admin
 ```
@@ -21,20 +21,20 @@ admin:
 email: root@example.com
 password: 12345678
 ```
-#### Prerequisites
-##### global packages
+## Prerequisites
+### global packages
 1. Node.js: v10.15.0
 2. nodemon: v2.0.7
 3. npm: v6.4.1
 
-##### local packages
+### local packages
 Please check ```dependencies``` in ```package.json```.
-##### database related
+### database related
 1. sequelize: v6.6.5
 2. sequelize-cli: v6.2.0
 3. mysql2: v2.3.0
 4. MySQL workbench 8.0.26
-#### Installation and Execution
+## Installation and Execution
 Please check ```scripts``` in ```package.json``` for commands.
 1. clone the project:
 ```git clone https://github.com/```
