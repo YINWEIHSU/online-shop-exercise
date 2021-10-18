@@ -9,18 +9,25 @@ Online-shop-exercise is a e-commerce website that allows users to purchase onlin
 ## Test website
 * User: https://online-shop-sql.herokuapp.com/
 * Admin: https://online-shop-sql.herokuapp.com/admin
+
+**user**
 ```
-user:
 email: user1@example.com
 password: 12345678
 
 email: user2@example.com
 password: 12345678
-
-admin:
+```
+**credit card No.** 
+```
+4000 2211 1111 1111
+```
+**admin**
+```
 email: root@example.com
 password: 12345678
 ```
+
 ## Prerequisites
 ### global packages
 1. Node.js: v10.15.0
