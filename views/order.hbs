@@ -51,15 +51,8 @@
       </div>
       {{/ifCond}}
       {{#ifCond order.payment_status '1'}}
-        <li>訂單狀態：已付款</li>
+      <li>訂單狀態：已付款</li>
       </ul>
-      <div style="display: flex; justify-content: space-around;">
-        <form action="/order/{{order.id}}/cancel" method="POST">
-          <button type="submit" class="btn btn-primary">取消訂單</button>
-        </form>
-
-        <a href="/order/{{order.id}}/payment"><button class="btn btn-primary">立即付款</button></a>
-      </div>
       {{/ifCond}}
     </div>
   </div>
